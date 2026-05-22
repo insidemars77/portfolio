@@ -1,0 +1,658 @@
+# Full Portfolio Website Code (HTML + CSS)
+
+Save this as `index.html`
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Shravan Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      scroll-behavior:smooth;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#000;
+      color:white;
+      overflow-x:hidden;
+    }
+
+    body::before{
+      content:'';
+      position:fixed;
+      width:500px;
+      height:500px;
+      background:rgba(255,115,0,0.18);
+      filter:blur(150px);
+      top:-100px;
+      left:-100px;
+      z-index:-1;
+    }
+
+    body::after{
+      content:'';
+      position:fixed;
+      width:400px;
+      height:400px;
+      background:rgba(255,140,0,0.12);
+      filter:blur(120px);
+      bottom:-100px;
+      right:-100px;
+      z-index:-1;
+    }
+
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      padding:22px 10%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,0.45);
+      backdrop-filter:blur(12px);
+      border-bottom:1px solid rgba(255,115,0,0.15);
+      z-index:1000;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:900;
+      color:#ff7300;
+      letter-spacing:4px;
+    }
+
+    nav ul{
+      display:flex;
+      list-style:none;
+      gap:35px;
+    }
+
+    nav ul li a{
+      text-decoration:none;
+      color:white;
+      transition:0.3s;
+      font-size:15px;
+    }
+
+    nav ul li a:hover{
+      color:#ff7300;
+    }
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 10%;
+    }
+
+    .hero small{
+      color:#ff7300;
+      letter-spacing:5px;
+      margin-bottom:20px;
+      display:block;
+    }
+
+    .hero h1{
+      font-size:100px;
+      line-height:1;
+      font-weight:900;
+    }
+
+    .hero h1 span{
+      color:#ff7300;
+    }
+
+    .hero h2{
+      margin-top:25px;
+      color:#bdbdbd;
+      font-weight:400;
+      font-size:28px;
+    }
+
+    .hero p{
+      margin-top:25px;
+      max-width:750px;
+      line-height:1.8;
+      color:#8d8d8d;
+      font-size:18px;
+    }
+
+    .buttons{
+      margin-top:45px;
+      display:flex;
+      gap:20px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .btn{
+      padding:15px 35px;
+      border-radius:14px;
+      text-decoration:none;
+      transition:0.3s;
+      font-weight:500;
+      display:inline-block;
+    }
+
+    .primary{
+      background:#ff7300;
+      color:white;
+      box-shadow:0 0 30px rgba(255,115,0,0.35);
+    }
+
+    .primary:hover{
+      transform:translateY(-5px);
+      background:#ff8c00;
+    }
+
+    .secondary{
+      border:2px solid #ff7300;
+      color:#ff7300;
+    }
+
+    .secondary:hover{
+      background:rgba(255,115,0,0.08);
+      transform:translateY(-5px);
+    }
+
+    section{
+      padding:120px 10%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title small{
+      color:#ff7300;
+      letter-spacing:4px;
+      display:block;
+      margin-bottom:12px;
+    }
+
+    .section-title h2{
+      font-size:55px;
+    }
+
+    .about{
+      max-width:1000px;
+      margin:auto;
+      text-align:center;
+      color:#b5b5b5;
+      line-height:2;
+      font-size:19px;
+    }
+
+    .skills-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:30px;
+    }
+
+    .skill-card{
+      background:#111;
+      border-radius:25px;
+      padding:45px;
+      text-align:center;
+      border:1px solid rgba(255,115,0,0.12);
+      transition:0.35s;
+    }
+
+    .skill-card:hover{
+      transform:translateY(-10px);
+      border-color:#ff7300;
+      box-shadow:0 0 25px rgba(255,115,0,0.12);
+    }
+
+    .skill-card h3{
+      color:#ff7300;
+      font-size:24px;
+    }
+
+    .projects-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:35px;
+    }
+
+    .project-card{
+      background:#111;
+      border-radius:28px;
+      overflow:hidden;
+      border:1px solid rgba(255,115,0,0.12);
+      transition:0.35s;
+    }
+
+    .project-card:hover{
+      transform:translateY(-10px);
+      border-color:#ff7300;
+      box-shadow:0 0 30px rgba(255,115,0,0.12);
+    }
+
+    .project-image{
+      height:220px;
+      background:linear-gradient(
+      135deg,
+      rgba(255,115,0,0.35),
+      black
+      );
+    }
+
+    .project-content{
+      padding:35px;
+    }
+
+    .project-content h3{
+      font-size:30px;
+      margin-bottom:18px;
+    }
+
+    .project-content p{
+      color:#9f9f9f;
+      line-height:1.8;
+      margin-bottom:30px;
+    }
+
+    .quote{
+      text-align:center;
+      padding:150px 10%;
+    }
+
+    .quote h1{
+      font-size:80px;
+      color:#ff7300;
+      margin-bottom:25px;
+    }
+
+    .quote p{
+      color:#999;
+      font-size:24px;
+    }
+
+    .contact{
+      text-align:center;
+    }
+
+    .contact-text{
+      max-width:700px;
+      margin:auto;
+      color:#9f9f9f;
+      line-height:1.9;
+      font-size:18px;
+      margin-bottom:40px;
+    }
+
+    .socials{
+      display:flex;
+      justify-content:center;
+      gap:25px;
+      flex-wrap:wrap;
+      margin-top:40px;
+    }
+
+    .socials a{
+      text-decoration:none;
+      color:white;
+      border:1px solid rgba(255,115,0,0.2);
+      padding:15px 25px;
+      border-radius:15px;
+      transition:0.3s;
+    }
+
+    .socials a:hover{
+      background:#ff7300;
+      transform:translateY(-5px);
+    }
+
+    footer{
+      border-top:1px solid rgba(255,115,0,0.08);
+      text-align:center;
+      padding:35px;
+      color:#666;
+    }
+
+    @media(max-width:768px){
+
+      nav{
+        padding:20px 6%;
+      }
+
+      nav ul{
+        display:none;
+      }
+
+      .hero h1{
+        font-size:58px;
+      }
+
+      .hero h2{
+        font-size:22px;
+      }
+
+      .hero p{
+        font-size:16px;
+      }
+
+      .section-title h2{
+        font-size:38px;
+      }
+
+      .quote h1{
+        font-size:50px;
+      }
+
+      .quote p{
+        font-size:18px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <nav>
+
+    <div class="logo">MARS.</div>
+
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+  </nav>
+
+  <section class="hero">
+
+    <small>PORTFOLIO WEBSITE</small>
+
+    <h1>
+      SHRAVAN<span>.</span>
+    </h1>
+
+    <h2>
+      BSc IT Student • Web Developer • Programmer
+    </h2>
+
+    <p>
+      Passionate about building cinematic digital experiences,
+      immersive interfaces, creative projects, and modern web applications.
+      Combining storytelling with technology to create unforgettable experiences.
+    </p>
+
+    <div class="buttons">
+
+      <a href="#projects" class="btn primary">
+        View Projects
+      </a>
+
+      <a href="mailto:insidemars77@gmail.com" class="btn secondary">
+        Hire Me
+      </a>
+
+    </div>
+
+  </section>
+
+  <section id="about">
+
+    <div class="section-title">
+      <small>ABOUT ME</small>
+      <h2>Building Experiences</h2>
+    </div>
+
+    <div class="about">
+
+      I am a BSc IT student passionate about web development,
+      storytelling, drawing, and creating cinematic digital experiences.
+      I enjoy building visually powerful interfaces with smooth interactions,
+      modern aesthetics, and meaningful ideas behind them.
+
+      <br><br>
+
+      Currently exploring full-stack development, UI/UX design,
+      creative coding, and immersive web experiences.
+
+    </div>
+
+  </section>
+
+  <section id="skills">
+
+    <div class="section-title">
+      <small>SKILLS</small>
+      <h2>Tech Stack</h2>
+    </div>
+
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <h3>HTML</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>CSS</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>JavaScript</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>React</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>Node.js</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>MongoDB</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>C / C++</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>Java</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>Python</h3>
+      </div>
+
+      <div class="skill-card">
+        <h3>UI/UX</h3>
+      </div>
+
+    </div>
+
+  </section>
+
+  <section id="projects">
+
+    <div class="section-title">
+      <small>PROJECTS</small>
+      <h2>Featured Work</h2>
+    </div>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+
+        <div class="project-image"></div>
+
+        <div class="project-content">
+
+          <h3>AI Trip Planner</h3>
+
+          <p>
+            Smart travel planner with modern UI and AI-based
+            destination recommendations. Designed with a cinematic
+            interface and immersive experience.
+          </p>
+
+          <a
+            href="https://trip-planner-henna-six.vercel.app/"
+            target="_blank"
+            class="btn primary"
+          >
+            Live Demo
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-image"></div>
+
+        <div class="project-content">
+
+          <h3>Student Management</h3>
+
+          <p>
+            Dashboard system for managing attendance,
+            student records, and educational workflows
+            with modern UI concepts.
+          </p>
+
+          <a href="#" class="btn secondary">
+            Coming Soon
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="project-card">
+
+        <div class="project-image"></div>
+
+        <div class="project-content">
+
+          <h3>Game Prototype</h3>
+
+          <p>
+            Story-driven cinematic game concept focused on
+            atmosphere, emotions, and immersive storytelling.
+          </p>
+
+          <a href="#" class="btn secondary">
+            In Development
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="quote">
+
+    <h1>Stay Legendary.</h1>
+
+    <p>
+      "God's plan." ✨💙✨
+    </p>
+
+  </section>
+
+  <section id="contact" class="contact">
+
+    <div class="section-title">
+      <small>CONTACT</small>
+      <h2>Let's Build Something Great</h2>
+    </div>
+
+    <div class="contact-text">
+
+      Open for internships, collaborations,
+      freelance projects, and creative opportunities.
+
+    </div>
+
+    <div class="buttons">
+
+      <a
+        href="mailto:insidemars77@gmail.com"
+        class="btn primary"
+      >
+        Email Me
+      </a>
+
+      <a
+        href="https://github.com/insidemars77"
+        target="_blank"
+        class="btn secondary"
+      >
+        GitHub
+      </a>
+
+    </div>
+
+    <div class="socials">
+
+      <a
+        href="https://www.instagram.com/shravan_not_shravaning/"
+        target="_blank"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="https://trip-planner-henna-six.vercel.app/"
+        target="_blank"
+      >
+        Trip Planner
+      </a>
+
+      <a
+        href="mailto:insidemars77@gmail.com"
+      >
+        Email
+      </a>
+
+    </div>
+
+  </section>
+
+  <footer>
+
+    © 2026 Shravan Patole — Built With HTML, CSS & JavaScript
+
+  </footer>
+
+</body>
+
+</html>
+```
+
+Run it by simply opening `index.html` in your browser.
